@@ -1,0 +1,62 @@
+{
+  "name": "@forumulate/nuxt",
+  "version": "0.1.0",
+  "description": "Nuxt module for Forumulate: auto-registered comments, search, changelog and feed components, plus SSR-ready content composables.",
+  "license": "MIT",
+  "author": "Forumulate",
+  "homepage": "https://forumulate.com/guides",
+  "bugs": {
+    "url": "https://forumulate.com/community"
+  },
+  "keywords": [
+    "forumulate",
+    "nuxt",
+    "nuxt-module",
+    "vue",
+    "comments",
+    "changelog",
+    "docs",
+    "forum",
+    "blog"
+  ],
+  "type": "module",
+  "main": "./dist/module.js",
+  "types": "./dist/module.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/module.d.ts",
+      "default": "./dist/module.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@forumulate/embed": "^1.0.0",
+    "@forumulate/vue": "^0.1.0",
+    "@nuxt/kit": "^3.13.0 || ^4.0.0"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.13.0 || ^4.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/schema": "^4.0.0",
+    "typescript": "^5.6.3",
+    "vue": "^3.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forumulate/nuxt.git"
+  }
+}
