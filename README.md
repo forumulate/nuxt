@@ -60,6 +60,25 @@ payload, and is not fetched again on hydration. The client-side composables
 are auto-imported with a `Forumulate` prefix: `useForumulatePage`,
 `useForumulatePosts`, `useForumulateTopics`, `useForumulateSearch`, ….
 
+## A content library (headless CMS)
+
+`@forumulate/nuxt/server`, for server routes (h3 v1 and v2):
+
+```ts
+// server/utils/cms.ts
+import { createContent } from '@forumulate/nuxt/server';
+export const cms = createContent({ library: 'lib_…', key: process.env.FORUMULATE_KEY! });
+// server/api/revalidate.post.ts
+export default defineEventHandler(createRevalidateHandler({ secret: process.env.FORUMULATE_WEBHOOK_SECRET! }));
+// server/api/preview.post.ts and exit-preview.post.ts
+export default defineEventHandler(createPreviewRoute({ library: 'lib_…' }));
+export default defineEventHandler(createExitPreviewRoute());
+// any server route: cms.from(event).getEntries('post')
+```
+
+Published reads are cached in-process and tagged with the API's cache tags; a verified webhook
+drops exactly those tags. A request carrying the preview cookie reads drafts, uncached.
+
 ## License
 
 MIT
